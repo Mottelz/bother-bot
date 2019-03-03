@@ -13,7 +13,7 @@ module.exports.pester = function (charater, callback) {
         } catch (e) {
             console.log(e);
         }
-        let message = "To quote " + charater[0].toUpperCase() + charater.substr(1) + ' "'+ quote + '"';
+        let message = "To quote " + charater[0].toUpperCase() + charater.substr(1) + ', "'+ quote + '"';
 
         callback(message);
     });
