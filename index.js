@@ -28,4 +28,8 @@ client.on('message', async msg => {
     if (msg.content == (prefix + 'Blat')) {
         bother.pester('blat', (post) => msg.channel.send(post));
     }
+
+    if (msg.content == (prefix + 'Snegal')) {
+        bother.pester('snegal', (post) => msg.channel.send(post));
+    }
 })
