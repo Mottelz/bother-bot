@@ -4,7 +4,7 @@
   "description": "A discord bot that generates random quotes from the characters from The End of Time and Other Bothers.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [
     "bot",
@@ -13,5 +13,10 @@
     "humour"
   ],
   "author": "Mottel Zirkind",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "dotenv": "^6.2.0",
+    "rita": "^1.3.89"
+  }
 }
