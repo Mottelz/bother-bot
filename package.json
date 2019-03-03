@@ -14,7 +14,7 @@
     "humour"
   ],
   "author": "Mottel Zirkind",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "discord.js": "^11.4.2",
     "dotenv": "^6.2.0",
