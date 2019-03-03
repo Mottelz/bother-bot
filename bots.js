@@ -7,7 +7,12 @@ module.exports.pester = function (charater, callback) {
     file = 'text/' + charater + '.txt';
     fs.readFile(file, 'utf8', async (err, data) => {
         if (err) throw err;
-        let quote = await saySomething(data);
+        let quote
+        try {
+            quote = await saySomething(data);
+        } catch (e) {
+            console.log(e);
+        }
         let message = "To quote " + charater[0].toUpperCase() + charater.substr(1) + ' "'+ quote + '"';
 
         callback(message);
@@ -17,5 +22,11 @@ module.exports.pester = function (charater, callback) {
 saySomething = async function(text) {
     let markov = rita.RiMarkov(3);
     markov.loadText(text);
-    return await markov.generateSentences(3).join(' ');
+    let msg;
+    try {
+        msg = await markov.generateSentences(3).join(' ');
+    } catch (e) {
+        console.log(e);
+    }
+    return msg;
 }
