@@ -1,6 +1,6 @@
 {
   "name": "bother-bot",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A discord bot that generates random quotes from the characters from The End of Time and Other Bothers.",
   "main": "index.js",
   "scripts": {
