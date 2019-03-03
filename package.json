@@ -3,6 +3,7 @@
   "version": "1.3.0",
   "description": "A discord bot that generates random quotes from the characters from The End of Time and Other Bothers.",
   "main": "index.js",
+  "repository": "https://github.com/Mottelz/bother-bot.git",
   "scripts": {
     "start": "node index.js"
   },
