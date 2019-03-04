@@ -31,15 +31,17 @@ let saySomething = async function(text) {
     return msg;
 };
 
+//Function to get the filepath for every file in a folder.
+//Source: https://stackoverflow.com/a/21459809/1585599
 let _getAllFilesFromFolder = function(dir) {
 
-    var filesystem = require("fs");
-    var results = [];
+    let filesystem = require("fs");
+    let results = [];
 
     filesystem.readdirSync(dir).forEach(function(file) {
 
         file = dir+'/'+file;
-        var stat = filesystem.statSync(file);
+        let stat = filesystem.statSync(file);
 
         if (stat && stat.isDirectory()) {
             results = results.concat(_getAllFilesFromFolder(file))
