@@ -15,21 +15,25 @@ client.login(process.env.TOKEN);
 
 //Listen for messages
 client.on('message', async msg => {
-    if(msg.content == (prefix + 'Darcy')) {
+    if(msg.content === (prefix + 'Darcy')) {
         bother.pester('darcy', (post) => msg.channel.send(post));
 
     }
 
-    if (msg.content == (prefix + 'Eggerton')) {
+    if (msg.content === (prefix + 'Eggerton')) {
         bother.pester('eggerton', (post) => msg.channel.send(post));
 
     }
 
-    if (msg.content == (prefix + 'Blat')) {
+    if (msg.content === (prefix + 'Blat')) {
         bother.pester('blat', (post) => msg.channel.send(post));
     }
 
-    if (msg.content == (prefix + 'Snegal')) {
+    if (msg.content === (prefix + 'Snegal')) {
         bother.pester('snegal', (post) => msg.channel.send(post));
+    }
+
+    if (msg.content === ('bb!stats')) {
+        bother.stats((post) => msg.channel.send(post))
     }
 })
