@@ -36,4 +36,8 @@ client.on('message', async msg => {
     if (msg.content === ('bb!stats')) {
         bother.stats((post) => msg.channel.send(post))
     }
+
+    if (msg.content === ('<:dice2d6:462317117841342466> <:fairycake:525033901236944907>')) {
+        bother.rollForFairyCakes((post) => msg.channel.send(post))
+    }
 })

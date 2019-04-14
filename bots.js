@@ -69,3 +69,25 @@ module.exports.stats = function (callback) {
     })
 }
 
+module.exports.rollForFairyCakes = function (callback) {
+    let toReturn = '';
+    let diceRoll = (Math.round(Math.random() * 5) + 1) + (Math.round(Math.random() * 5) + 1);
+    let effects = ['drunk', 'stoned', 'noxious', 'depressed', 'deaf', 'mute', 'hallucinating'];
+    
+    if (diceRoll < 7) {
+        toReturn = 'You ate a fairy cake, but nothing happened. It tasted good though.';
+    } else if (diceRoll < 10) {
+        let d8 = Math.round(Math.random() * 7) + 1;
+        toReturn = 'You were healed for '
+            + d8
+            + ', but you\'re now '
+            + effects[Math.round(Math.random() * (effects.length - 1))]
+            + '. It\'ll wear off soon.'
+    } else {
+        let d8 = Math.round(Math.random() * 7) + 1;
+        toReturn = 'You were healed for '
+            + d8 + ' with no ill effects!'
+    }
+    
+    callback(toReturn);
+}
