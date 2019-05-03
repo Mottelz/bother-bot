@@ -17,12 +17,10 @@ client.login(process.env.TOKEN);
 client.on('message', async msg => {
     if(msg.content === (prefix + 'Darcy')) {
         bother.pester('darcy', (post) => msg.channel.send(post));
-
     }
 
     if (msg.content === (prefix + 'Eggerton')) {
         bother.pester('eggerton', (post) => msg.channel.send(post));
-
     }
 
     if (msg.content === (prefix + 'Blat')) {
@@ -34,10 +32,14 @@ client.on('message', async msg => {
     }
 
     if (msg.content === ('bb!stats')) {
-        bother.stats((post) => msg.channel.send(post))
+        bother.stats((post) => msg.channel.send(post));
     }
 
     if (msg.content === ('<:dice2d6:462317117841342466> <:fairycake:525033901236944907>')) {
-        bother.rollForFairyCakes((post) => msg.channel.send(post))
+        bother.rollForFairyCakes((post) => msg.channel.send(post));
+    }
+
+    if(msg.content.toLowerCase().includes('morrigu')) {
+        bother.morrigusWrath((post) => msg.channel.send(post));
     }
 })

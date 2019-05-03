@@ -91,3 +91,16 @@ module.exports.rollForFairyCakes = function (callback) {
     
     callback(toReturn);
 }
+
+module.exports.morrigusWrath = function (callback) {
+    let toReturn = 'Your';
+    let target = ['pants', 'top', 'house', 'fork', 'spoon', 'eye brows', 'car', 'tree', 'cape'];
+    let effect = ['exploded', 'imploded', 'turned orange', 'turned blue', 'turned turquoise',
+        'suddenly shredded', 'flew away', 'turned into a turnip', 'turned into an orange',
+        'turned into grape jello', 'turned into a pillow', 'turned into a rock', 'turned into a stick'];
+
+    toReturn += ' ' + target[Math.round(Math.random() * (target.length - 1))] +
+        ' ' + effect[Math.round(Math.random() * (effect.length - 1))] + '.';
+
+    callback(toReturn);
+}
