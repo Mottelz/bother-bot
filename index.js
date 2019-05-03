@@ -39,7 +39,12 @@ client.on('message', async msg => {
         bother.rollForFairyCakes((post) => msg.channel.send(post));
     }
 
-    if(msg.content.toLowerCase().includes('morrigu')) {
+    if(msg.content.toLowerCase().includes('morrigu') ||
+        msg.content.toLowerCase().includes('morigu') ||
+        msg.content.toLowerCase().includes('morrigoo') ||
+        msg.content.toLowerCase().includes('morrigo') ||
+        msg.content.toLowerCase().includes('morigo') ||
+        msg.content.toLowerCase().includes('morigoo')) {
         bother.morrigusWrath((post) => msg.channel.send(post));
     }
 })
