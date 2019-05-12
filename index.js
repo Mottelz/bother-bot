@@ -45,6 +45,6 @@ client.on('message', async msg => {
         msg.content.toLowerCase().includes('morrigo') ||
         msg.content.toLowerCase().includes('morigo') ||
         msg.content.toLowerCase().includes('morigoo')) {
-        bother.morrigusWrath((post) => msg.channel.send(post));
+        bother.morrigusWrath((post) => msg.channel.send(post), msg.author);
     }
 })
