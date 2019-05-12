@@ -77,7 +77,7 @@ module.exports.rollForFairyCakes = function (callback) {
     let tastes = ['spicy', 'tart', 'purple', 'cold', 'sweet', 'apricot-ish', 'apple-ish', 'peppery', 'fishy', 'bland', 'flowery'];
     
     if (diceRoll < 7) {
-        toReturn = 'You ate a fairy cake, but nothing happened.';
+        toReturn = 'You notice no other effects.';
     } else if (diceRoll < 10) {
         let d8 = Math.round(Math.random() * 7) + 1;
         toReturn = 'You were healed for '
@@ -98,8 +98,7 @@ module.exports.rollForFairyCakes = function (callback) {
         flavourTwo = Math.round(Math.random() * (tastes.length - 1));
     }
 
-    toReturn += ' It tasted ' + tastes[flavourOne] + ' and ' + tastes[flavourTwo] + '.'
-
+    toReturn = 'You ate a fairy cake that tasted ' + tastes[flavourOne] + ' and ' + tastes[flavourTwo] + '. ' + toReturn;
     callback(toReturn);
 }
 
