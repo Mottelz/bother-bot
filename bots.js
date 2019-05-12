@@ -72,10 +72,12 @@ module.exports.stats = function (callback) {
 module.exports.rollForFairyCakes = function (callback) {
     let toReturn = '';
     let diceRoll = (Math.round(Math.random() * 5) + 1) + (Math.round(Math.random() * 5) + 1);
-    let effects = ['drunk', 'stoned', 'noxious', 'depressed', 'deaf', 'mute', 'hallucinating'];
+    let effects = ['drunk', 'stoned', 'anxious', 'depressed', 'deaf', 'mute', 'hallucinating',
+        'only able to use six letter words', 'only able to use four letter words'];
+    let tastes = ['spicy', 'tart', 'purple', 'cold', 'sweet', 'apricot-ish', 'apple-ish', 'peppery', 'fishy', 'bland', 'flowery'];
     
     if (diceRoll < 7) {
-        toReturn = 'You ate a fairy cake, but nothing happened. It tasted good though.';
+        toReturn = 'You ate a fairy cake, but nothing happened.';
     } else if (diceRoll < 10) {
         let d8 = Math.round(Math.random() * 7) + 1;
         toReturn = 'You were healed for '
@@ -88,7 +90,16 @@ module.exports.rollForFairyCakes = function (callback) {
         toReturn = 'You were healed for '
             + d8 + ' with no ill effects!'
     }
-    
+
+    let flavourOne = Math.round(Math.random() * (tastes.length - 1));
+    let flavourTwo = Math.round(Math.random() * (tastes.length - 1));
+
+    while (flavourOne === flavourTwo) {
+        flavourTwo = Math.round(Math.random() * (tastes.length - 1));
+    }
+
+    toReturn += ' It tasted ' + tastes[flavourOne] + ' and ' + tastes[flavourTwo] + '.'
+
     callback(toReturn);
 }
 
