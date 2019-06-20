@@ -73,7 +73,7 @@ module.exports.rollForFairyCakes = function (callback) {
     let toReturn = '';
     let diceRoll = (Math.round(Math.random() * 5) + 1) + (Math.round(Math.random() * 5) + 1);
     let effects = ['drunk', 'stoned', 'anxious', 'depressed', 'deaf', 'mute', 'hallucinating',
-        'only able to use six letter words', 'only able to use four letter words'];
+        'only able to use six letter words', 'only able to use four letter words', 'seemingly trapped in a large body of water', 'surrounded by anthropomorphized animals wearing the clothes of the people who were there a moment ago.'];
     let tastes = ['spicy', 'tart', 'purple', 'cold', 'sweet', 'apricot-ish', 'apple-ish', 'peppery', 'fishy', 'bland', 'flowery'];
     
     if (diceRoll < 7) {
