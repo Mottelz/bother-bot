@@ -1,4 +1,5 @@
 //https://discordapp.com/oauth2/authorize?client_id=551804985596313630&scope=bot&permissions=68608
+//https://discordapp.com/oauth2/authorize?client_id=551804985596313630&scope=bot&permissions=93184
 require('dotenv').config()
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -46,5 +47,16 @@ client.on('message', async msg => {
         msg.content.toLowerCase().includes('morigo') ||
         msg.content.toLowerCase().includes('morigoo')) {
         bother.morrigusWrath((post) => msg.channel.send(post), msg.author);
+    }
+})
+
+client.on('messageUpdate', (oldMsg, newMsg) => {
+    if(newMsg.content.toLowerCase().includes('morrigu') ||
+        newMsg.content.toLowerCase().includes('morigu') ||
+        newMsg.content.toLowerCase().includes('morrigoo') ||
+        newMsg.content.toLowerCase().includes('morrigo') ||
+        newMsg.content.toLowerCase().includes('morigo') ||
+        newMsg.content.toLowerCase().includes('morigoo')) {
+        bother.morrigusWrath((post) => newMsg.channel.send(post), newMsg.author);
     }
 })
