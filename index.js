@@ -1,10 +1,8 @@
-//https://discordapp.com/oauth2/authorize?client_id=551804985596313630&scope=bot&permissions=68608
-//https://discordapp.com/oauth2/authorize?client_id=551804985596313630&scope=bot&permissions=93184
-require('dotenv').config()
+require('dotenv').config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const bother = require('./bots.js');
-const prefix = 'Quote '
+const goddess = /morrigu|morigu|morrigoo|morrigo|morigo|morigoo|moragu|morragu/;
 
 //Once ready, notify that we're ready.
 client.once('ready', () => {
@@ -16,47 +14,29 @@ client.login(process.env.TOKEN);
 
 //Listen for messages
 client.on('message', async msg => {
-    if(msg.content === (prefix + 'Darcy')) {
-        bother.pester('darcy', (post) => msg.channel.send(post));
-    }
 
-    if (msg.content === (prefix + 'Eggerton')) {
-        bother.pester('eggerton', (post) => msg.channel.send(post));
-    }
-
-    if (msg.content === (prefix + 'Blat')) {
-        bother.pester('blat', (post) => msg.channel.send(post));
-    }
-
-    if (msg.content === (prefix + 'Snegal')) {
-        bother.pester('snegal', (post) => msg.channel.send(post));
-    }
-
-    if (msg.content === ('bb!stats')) {
-        bother.stats((post) => msg.channel.send(post));
-    }
-
+    // Roll for Fairy Cakes
     if (msg.content === ('<:dice2d6:462317117841342466> <:fairycake:525033901236944907>')) {
         bother.rollForFairyCakes((post) => msg.channel.send(post));
     }
 
-    if(msg.content.toLowerCase().includes('morrigu') ||
-        msg.content.toLowerCase().includes('morigu') ||
-        msg.content.toLowerCase().includes('morrigoo') ||
-        msg.content.toLowerCase().includes('morrigo') ||
-        msg.content.toLowerCase().includes('morigo') ||
-        msg.content.toLowerCase().includes('morigoo')) {
+    // Morrigu's Wrath
+    if(msg.content.toLowerCase().match(goddess)) {
         bother.morrigusWrath((post) => msg.channel.send(post), msg.author);
     }
-})
 
+    // The Bazooka
+    if(msg.content.toLowerCase().includes('bazooka')
+        && msg.author.username.toLowerCase() === 'carter'
+        && msg.author.discriminator === '6638'
+        ) {
+        bother.summonBazooka((post) => msg.channel.send(post));
+    }
+});
+
+// Morrigu's Wrath for Edits
 client.on('messageUpdate', (oldMsg, newMsg) => {
-    if(newMsg.content.toLowerCase().includes('morrigu') ||
-        newMsg.content.toLowerCase().includes('morigu') ||
-        newMsg.content.toLowerCase().includes('morrigoo') ||
-        newMsg.content.toLowerCase().includes('morrigo') ||
-        newMsg.content.toLowerCase().includes('morigo') ||
-        newMsg.content.toLowerCase().includes('morigoo')) {
+    if(newMsg.content.toLowerCase().match(goddess)) {
         bother.morrigusWrath((post) => newMsg.channel.send(post), newMsg.author);
     }
-})
+});

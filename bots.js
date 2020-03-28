@@ -1,93 +1,22 @@
-const rita = require('rita');
-const fs = require('fs');
-
-module.exports.pester = function (character, callback) {
-
-    //load the text
-    let file = 'text/' + character + '.txt';
-    fs.readFile(file, 'utf8', async (err, data) => {
-        if (err) throw err;
-        let quote
-        try {
-            quote = await saySomething(data);
-        } catch (e) {
-            console.log(e);
-        }
-        let message = "To quote " + character[0].toUpperCase() + character.substr(1) + ', "'+ quote + '"';
-
-        callback(message);
-    });
-};
-
-let saySomething = async function(text) {
-    let markov = rita.RiMarkov(3);
-    markov.loadText(text);
-    let msg;
-    try {
-        msg = await markov.generateSentences(3).join(' ');
-    } catch (e) {
-        console.log(e);
-    }
-    return msg;
-};
-
-//Function to get the filepath for every file in a folder.
-//Source: https://stackoverflow.com/a/21459809/1585599
-let _getAllFilesFromFolder = function(dir) {
-
-    let filesystem = require("fs");
-    let results = [];
-
-    filesystem.readdirSync(dir).forEach(function(file) {
-
-        file = dir+'/'+file;
-        let stat = filesystem.statSync(file);
-
-        if (stat && stat.isDirectory()) {
-            results = results.concat(_getAllFilesFromFolder(file))
-        } else results.push(file);
-
-    });
-
-    return results;
-
-};
-
-
-module.exports.stats = function (callback) {
-    let result = _getAllFilesFromFolder('text');
-    result.forEach((filename) => {
-        fs.readFile(filename, 'utf8', (err, text) => {
-            if (err) throw err;
-            let words = text.split(" ");
-            let count = words.length;
-            let character = filename.substr(5).replace('.txt', '');
-            character = character[0].toUpperCase() + character.substr(1);
-            let msg = character + " has spoken " + count.toString() + " words.";
-            callback(msg);
-        })
-    })
-}
-
-module.exports.rollForFairyCakes = function (callback) {
-    let toReturn = '';
+function rollForFairyCakes(callback) {
+    let effect = '';
     let diceRoll = (Math.round(Math.random() * 5) + 1) + (Math.round(Math.random() * 5) + 1);
     let effects = ['drunk', 'stoned', 'anxious', 'depressed', 'deaf', 'mute', 'hallucinating',
         'only able to use six letter words', 'only able to use four letter words', 'seemingly trapped in a large body of water', 'surrounded by anthropomorphized animals wearing the clothes of the people who were there a moment ago.'];
     let tastes = ['spicy', 'tart', 'purple', 'cold', 'sweet', 'apricot-ish', 'apple-ish', 'peppery', 'fishy', 'bland', 'flowery'];
     
     if (diceRoll < 7) {
-        toReturn = 'You notice no other effects.';
+        effect = 'You notice no other effects.';
     } else if (diceRoll < 10) {
         let d8 = Math.round(Math.random() * 7) + 1;
-        toReturn = 'You were healed for '
+        effect = 'You were healed for '
             + d8
             + ', but you\'re now '
             + effects[Math.round(Math.random() * (effects.length - 1))]
             + '. It\'ll wear off soon.'
     } else {
         let d8 = Math.round(Math.random() * 7) + 1;
-        toReturn = 'You were healed for '
+        effect = 'You were healed for '
             + d8 + ' with no ill effects!'
     }
 
@@ -98,11 +27,11 @@ module.exports.rollForFairyCakes = function (callback) {
         flavourTwo = Math.round(Math.random() * (tastes.length - 1));
     }
 
-    toReturn = 'You ate a fairy cake that tasted ' + tastes[flavourOne] + ' and ' + tastes[flavourTwo] + '. ' + toReturn;
+    let toReturn = 'You ate a fairy cake that tasted ' + tastes[flavourOne] + ' and ' + tastes[flavourTwo] + '. ' + effect;
     callback(toReturn);
 }
 
-module.exports.morrigusWrath = function (callback, author) {
+function morrigusWrath(callback, author) {
     let toReturn = `${author}'s `;
     let target = ['pants', 'top', 'house', 'fork', 'spoon', 'eye brows', 'car', 'tree', 'cape'];
     let effect = ['exploded', 'imploded', 'turned orange', 'turned blue', 'turned turquoise',
@@ -114,3 +43,28 @@ module.exports.morrigusWrath = function (callback, author) {
 
     callback(toReturn);
 }
+
+function summonBazooka(callback) {
+    let things = ['A turnip', 'An apple', 'A cat', 'A pen', 'A ball', 'A tambourine', 'A pair of dice',
+        'A bagful of dice', 'A copper pot', 'A dozen soft pretzel buns', 'Fairy sparkles', 'A worn out sandal',
+        'Money from a different universe (I forget the name)', 'A guitar', 'An orange', 'A broken alarm clock',
+        'A working alarm clock', 'A baby bassinet', 'An empty and cracked water canteen', 'A cheesecake',
+        'A random assortment of Candy World pieces', 'Some extremely stale cookies', 'A lemon',
+        'A 10ft poking stick that will immediately break', 'A bowl of cold spaghetti', 'A fairy sized cone of shame',
+        'A giant sized cone of shame', 'A human sized cone of shame', 'A pup robot toy without the batteries', 'An artificial centaur tail',
+        'The script for the next EOT episode'
+    ];
+
+
+    let out = (Math.floor(Math.random() * 12)) ?
+    things[Math.floor(Math.random() * (things.length - 1))] + ' suddenly appears in Blat\'s hand.' :
+    'BOOOOOOOOM!';
+
+    callback(out);
+}
+
+module.exports = {
+    summonBazooka,
+    rollForFairyCakes,
+    morrigusWrath
+};
